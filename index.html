@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<title>Indonesian Export Riches</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+  :root {
+    --bg-color: #000; /* Black background */
+    --text-color: #fff; /* White text */
+    --accent-light-brown: #d9c6a0; /* Light brown */
+    --accent-dark-green: #2c3e50; /* Dark green */
+    --accent-dark-blue: #34495e; /* Dark blue */
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-y: scroll;
+  }
+
+  header {
+    background: var(--accent-dark-blue);
+    color: white;
+    user-select: none;
+    position: relative;
+  }
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 10px; /* Reduce padding to move content closer to the edges */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+  /* Left side: logo and company name with search */
+ .left-header {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Reduce gap between logo and name */
+    margin-left: 10px; /* Move Closer to the Left */
+}
+
+  .company-logo {
+    display: flex;
+    align-items: center;
+    border-radius: 10%; /* Make the logo circular */
+  }
+
+ .company-logo img {
+    width: 44px;
+    height: 44px;
+    border-radius: 10%; /* Make the logo circular */
+}
+
+  .company-name {
+    font-size: 1rem;
+    color: var(--accent-light-brown);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* Search container */
+ .search-container {
+    position: absolute;
+    right: 20px; /* Move to the right side */
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    cursor: pointer;
+    width: 28px; /* Make it smaller */
+    height: 28px; /* Make it smaller */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+    color: var(--accent-light-brown);
+    flex-shrink: 0;
+}
+
+  .search-icon:hover {
+    background-color: rgba(217,198,160,0.3);
+  }
+
+  /* The expanding input box */
+  .search-box {
+    position: absolute;
+    top: 50%;
+    left: -210px; /* initially hidden to left */
+    transform: translateY(-50%);
+    background: rgba(255 255 255 / 0.1);
+    border: 1px solid var(--accent-light-brown);
+    border-radius: 8px;
+    padding: 8px 12px;
+    width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(10px);
+  }
+
+  /* Show input box smoothly on hover over icon or input itself */
+  .search-container:hover .search-box,
+  .search-box:focus-within {
+    left: -220px;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .search-input {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    outline: none;
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  /* Search results container */
+  .search-results {
+    position: absolute;
+    top: 50%;
+    left: -420px;
+    transform: translateY(-50%);
+    background: rgba(0 0 0 / 0.85);
+    border-radius: 8px;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    max-width: 400px;
+    min-width: 180px;
+    padding: 8px 12px;
+    box-shadow: 0 0 16px rgb(0 0 0 / 0.8);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+  }
+  .search-results.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Main content styles */
+  main {
+    scroll-snap-type: y mandatory;
+    height: 100vh;
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  main::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  section {
+    scroll-snap-align: start;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Brand introduction section */
+  .brand-intro {
+    position: relative;
+    background: url('Perkenalan.png') no-repeat center center;
+    background-size: cover;
+    color: var(--text-color);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .brand-intro::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+  }
+
+  .brand-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    max-width: 900px;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .brand-logo {
+    flex: 0 0 35%;
+    text-align: center;
+  }
+
+  .brand-logo img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 16px var(--accent-light-brown);
+  }
+
+  .brand-description {
+    flex: 1;
+    padding-left: 30px;
+    text-align: left;
+  }
+
+  .brand-description h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: var(--accent-light-brown);
+  }
+
+  .brand-description p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #ccc;
+  }
+
+  /* Products section style */
+  .product-slide {
+    padding: 40px 60px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .product-content {
+    display: flex;
+    width: 100%;
+    max-width: 1000px;
+  }
+
+  .product-image {
+    flex: 1;
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 40px;
+  }
+
+  .product-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 0 24px var(--accent-dark-green);
+  }
+
+  .product-info {
+    flex: 1;
+    color: #eee;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .product-title {
+    font-weight: 700;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: var(--accent-light-brown);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .product-desc {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    color: #bbb;
+  }
+
+.btn-info {
+    background: var(--accent-light-brown);
+    color: var(--bg-color);
+    border: none;
+    padding: 11.25px 24px; /* Reduced by 25% from 15px 32px */
+    font-weight: 700;
+    font-size: 0.825rem; /* Reduced by 25% from 1.1rem */
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    transition: background-color 0.3s;
+    width: fit-content;
+}
+
+  .btn-info:hover {
+    background-color: var(--accent-dark-green);
+    color: var(--accent-light-brown);
+  }
+
+  /* Floating contact main circle */
+ .floating-contact {
+    position: fixed;
+    bottom: 20px; /* Adjust position */
+    right: 20px; /* Adjust position */
+    width: 50px; /* Smaller size */
+    height: 50px; /* Smaller size */
+    background: var(--accent-light-brown);
+    border-radius: 50%;
+    box-shadow: 0 8px 20px rgba(210, 198, 160, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+    user-select: none;
+}
+
+  .floating-contact:hover {
+    background-color: var(--accent-dark-green);
+  }
+  .floating-contact svg {
+    width: 30px;
+    height: 30px;
+    fill: var(--bg-color);
+    pointer-events: none;
+  }
+
+  /* Drawer container for contact options */
+.floating-drawer {
+    position: fixed;
+    bottom: 80px; /* Adjusted for smaller circle */
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    opacity: 1; /* Always visible */
+    visibility: visible; /* Always visible */
+    transform: translateY(0); /* No animation */
+    z-index: 999;
+    transition: none; /* Disable transition */
+}
+
+  /* Show drawer on hover of main circle or drawer */
+  .floating-contact:hover + .floating-drawer,
+  .floating-drawer:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .drawer-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--accent-light-brown);
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(210, 198, 160, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .drawer-icon:hover {
+    background-color: var(--accent-dark-green);
+  }
+  .drawer-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--bg-color);
+    pointer-events: none;
+  }
+
+  /* Responsive for Mobile */
+  @media (max-width: 768px) {
+    .brand-content {
+      flex-direction: column;
+      text-align: center;
+    }
+    .brand-logo {
+      flex: none;
+      margin-bottom: 20px;
+    }
+    .brand-description {
+      padding-left: 0;
+    }
+    .product-content {
+      flex-direction: column;
+      padding: 0 20px;
+    }
+    .product-image, .product-info {
+      max-width: 100%;
+      padding: 0;
+    }
+    .product-image {
+      margin-bottom: 30px;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-content">
+    <div class="left-header">
+      <div class="company-logo" aria-label="Company Logo">
+        <img src="Logo.png" alt="Bhumi Samudra Sari Logo" />
+      </div>
+      <div class="company-name" aria-label="Company Name">Bhumi Samudra Sari</div>
+      <div class="search-container" aria-label="Site Search">
+        <div class="search-icon" tabindex="0" aria-label="Open search">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor">
+            <path d="M10 2a8 8 0 015.292 13.708l4.853 4.853-1.414 1.414-4.853-4.853A8 8 0 1110 2zm0 2a6 6 0 100 12 6 6 0 000-12z"></path>
+          </svg>
+        </div>
+        <div class="search-box">
+          <input type="text" class="search-input" placeholder="Cari produk..." aria-label="Search input" />
+          <div class="search-results" role="listbox" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<main>
+  <!-- Brand Introduction (First Slide) -->
+  <section class="brand-intro" aria-label="Brand Introduction">
+    <div class="brand-content">
+      <div class="brand-logo" aria-label="Company Logo">
+        <img src="Logo.png" alt="Company Logo" />
+      </div>
+      <div class="brand-description">
+        <h2>Kekayaan Nusantara</h2>
+        <p>
+          Kami adalah perusahaan eksportir yang menghadirkan kekayaan Indonesia kepada dunia melalui produk rempah, kopi, kayu, dan kerajinan tangan berkualitas tinggi dengan sentuhan mewah dan terpercaya.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Slides start -->
+  <section class="product-slide" aria-label="Rempah Product">
+    <div class="product-content">
+      <div class="product-image">
+        <img src="Rempah.png" alt="Rempah Product Image" />
+      </div>
+      <div class="product-info">
+        <h2 class="product-title">Rempah</h2>
+        <p class="product-desc">
+          Rempah-rempah asli Indonesia yang kaya rasa dan aroma, hasil bumi pilihan yang sudah mendunia.
+        </p>
+        <a href="rempah.html" class="btn-info" aria-label="Informasi Selengkapnya Rempah">Informasi Selengkapnya</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="product-slide" aria-label="Kopi Product">
+    <div class="product-content">
+      <div class="product-image">
+        <img src="Kopi.png" alt="Kopi Product Image" />
+      </div>
+      <div class="product-info">
+        <h2 class="product-title">Kopi</h2>
+        <p class="product-desc">
+          Kopi premium dari perkebunan terbaik, menampilkan cita rasa unik khas Indonesia.
+        </p>
+        <a href="kopi.html" class="btn-info" aria-label="Informasi Selengkapnya Kopi">Informasi Selengkapnya</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="product-slide" aria-label="Kayu Product">
+    <div class="product-content">
+      <div class="product-image">
+        <img src="Kayu.png" alt="Kayu Product Image" />
+      </div>
+      <div class="product-info">
+        <h2 class="product-title">Kayu</h2>
+        <p class="product-desc">
+          Kayu berkualitas tinggi untuk berbagai keperluan ekspor, terjaga kelestariannya dan bernilai estetika.
+        </p>
+        <a href="kayu.html" class="btn-info" aria-label="Informasi Selengkapnya Kayu">Informasi Selengkapnya</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="product-slide" aria-label="Kerajinan Tangan Product">
+    <div class="product-content">
+      <div class="product-image">
+        <img src="Kerajinan Tangan.png" alt="Kerajinan Tangan Product Image" />
+      </div>
+      <div class="product-info">
+        <h2 class="product-title">Kerajinan Tangan</h2>
+        <p class="product-desc">
+          Kerajinan tangan khas Indonesia yang unik dan bernilai seni tinggi, sempurna untuk pasar global.
+        </p>
+        <a href="kerajinan.html" class="btn-info" aria-label="Informasi Selengkapnya Kerajinan Tangan">Informasi Selengkapnya</a>
+      </div>
+    </div>
+  </section>
+  <!-- Product Slides end -->
+
+</main>
+
+<!-- Floating main circle for drawer -->
+<div class="floating-contact" tabindex="0" aria-label="Open contact options">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="currentColor">
+    <path d="M20.52 3.48A11.89 11.89 0 0012 0a11.945 11.945 0 00-10.53 17.83l-1.34 4.91 5.07-1.32A11.905 11.905 0 0012 24c6.62 0 12-5.38 12-12 0-3.2-1.34-6.22-3.48-8.52zm-1.33 13.68c-.54 1.53-3.11 2.94-4.2 3.37.16-.2.41-.63.45-.7.11-.19.21-.37.31-.56a.56.56 0 00-.04-.69c-.34-.41-2.29-2.28-2.67-2.54a.93.93 0 00-1.12-.09 16.103 16.103 0 01-2.74-1.92 1.013 1.013 0 01-.23-1.19c.13-.21.3-.4.5-.55.05-.04.1-.07.15-.1a.673.673 0 00.28-.09c.03-.04.07-.09.08-.13a3.012 3.012 0 00-.7-1.57c-.52-.59-.94-1.17-1.25-1.73-.03-.05 0-.1.01-.15.04-.23.17-.46.36-.63A1.516 1.516 0 016.5 9.02c.26-.12.52-.2.8-.27.12-.02.2 0 .28.09.08.11 1.02 1.96 3.02 3.22 1.81 1.14 2.72 1.42 3.25 1.68.36.17.58.38.64.6.03.12 0 .29-.04.44z"/>
+  </svg>
+</div>
+
+<!-- Drawer with contact icons -->
+<div class="floating-drawer" aria-label="Contact options" role="menu" tabindex="0">
+  <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="drawer-icon" aria-label="Contact via WhatsApp" role="menuitem" tabindex="0">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+      <path d="M20.52 3.48A11.89 11.89 0 0012 0a11.945 11.945 0 00-10.53 17.83l-1.34 4.91 5.07-1.32A11.905 11.905 0 0012 24c6.62 0 12-5.38 12-12 0-3.2-1.34-6.22-3.48-8.52zm-1.33 13.68c-.54 1.53-3.11 2.94-4.2 3.37.16-.2.41-.63.45-.7.11-.19.21-.37.31-.56a.56.56 0 00-.04-.69c-.34-.41-2.29-2.28-2.67-2.54a.93.93 0 00-1.12-.09 16.103 16.103 0 01-2.74-1.92 1.013 1.013 0 01-.23-1.19c.13-.21.3-.4.5-.55.05-.04.1-.07.15-.1a.673.673 0 00.28-.09c.03-.04.07-.09.08-.13a3.012 3.012 0 00-.7-1.57c-.52-.59-.94-1.17-1.25-1.73-.03-.05 0-.1.01-.15.04-.23.17-.46.36-.63A1.516 1.516 0 016.5 9.02c.26-.12.52-.2.8-.27.12-.02.2 0 .28.09.08.11 1.02 1.96 3.02 3.22 1.81 1.14 2.72 1.42 3.25 1.68.36.17.58.38.64.6.03.12 0 .29-.04.44z"/>
+    </svg>
+  </a>
+  <a href="mailto:contact@example.com" class="drawer-icon" aria-label="Contact via Email" role="menuitem" tabindex="0">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+      <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2v.01L12 13 4 6.01V6h16zM4 18V8l8 5 8-5v10H4z"/>
+    </svg>
+  </a>
+</div>
+
+<script>
+  // Search functionality demo - add typed text display in results box
+  const searchInput = document.querySelector('.search-input');
+  const searchResults = document.querySelector('.search-results');
+
+  searchInput.addEventListener('input', (e) => {
+    const val = e.target.value.trim();
+    if (!val) {
+      searchResults.classList.remove('visible');
+      searchResults.innerHTML = '';
+      return;
+    }
+    // Demo simple: show the query
+    searchResults.innerHTML = `<div>Hasil pencarian untuk: <strong>${val}</strong></div>`;
+    searchResults.classList.add('visible');
+  });
+
+  // Close results if clicked outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-container')) {
+      searchResults.classList.remove('visible');
+      searchInput.value = '';
+    }
+  });
+
+  // Select the floating button and drawer
+  const floatingContact = document.querySelector('.floating-contact');
+  const floatingDrawer = document.querySelector('.floating-drawer');
+
+  let isDrawerPinned = false; // Track if the drawer is pinned
+
+  // Show the drawer when hovering over the button or drawer
+  floatingContact.addEventListener('mouseenter', () => {
+      if (!isDrawerPinned) {
+          floatingDrawer.style.opacity = '1';
+          floatingDrawer.style.visibility = 'visible';
+      }
+  });
+
+  floatingDrawer.addEventListener('mouseenter', () => {
+      if (!isDrawerPinned) {
+          floatingDrawer.style.opacity = '1';
+          floatingDrawer.style.visibility = 'visible';
+      }
+  });
+
+  // Hide the drawer when the mouse leaves, but only if not pinned
+  floatingContact.addEventListener('mouseleave', () => {
+      if (!isDrawerPinned) {
+          floatingDrawer.style.opacity = '';
+          floatingDrawer.style.visibility = '';
+      }
+  });
+
+  floatingDrawer.addEventListener('mouseleave', () => {
+      if (!isDrawerPinned) {
+          floatingDrawer.style.opacity = '';
+          floatingDrawer.style.visibility = '';
+      }
+  });
+
+  // Pin or unpin the drawer when the floating button is clicked
+  floatingContact.addEventListener('click', () => {
+      isDrawerPinned = !isDrawerPinned; // Toggle pin state
+      if (isDrawerPinned) {
+          floatingDrawer.style.opacity = '1';
+          floatingDrawer.style.visibility = 'visible';
+      } else {
+          floatingDrawer.style.opacity = '';
+          floatingDrawer.style.visibility = '';
+      }
+  });
+
+  // Hide the drawer on scroll if it's not pinned
+  window.addEventListener('scroll', () => {
+      if (!isDrawerPinned) {
+          floatingDrawer.style.opacity = '';
+          floatingDrawer.style.visibility = '';
+      }
+  });
+</script>
+</body>
+</html>
+
